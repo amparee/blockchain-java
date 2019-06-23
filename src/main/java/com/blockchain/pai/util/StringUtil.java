@@ -63,17 +63,13 @@ public class StringUtil {
 		return Base64.getEncoder().encodeToString(key.getEncoded());
 	}
 
-	// Returns difficulty string target, to compare to hash. eg difficulty of 5 will
+	// Retorna dificultad del target del string para comparar el hash
 	// return "00000"
 	public static String getDificultyString(int difficulty) {
 		return new String(new char[difficulty]).replace('\0', '0');
 	}
 
-//	Tacks in
-//	array of
-//	transactions and
-//	returns a
-//	merkle root.
+//	cambia el curso del array de las transacciones y retorna el merkle root
 
 	public static String getMerkleRoot(ArrayList<Transaction> transactions) {
 		int count = transactions.size();

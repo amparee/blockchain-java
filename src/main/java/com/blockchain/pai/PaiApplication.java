@@ -4,6 +4,7 @@ import java.security.Security;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.blockchain.pai.entity.Block;
@@ -11,8 +12,6 @@ import com.blockchain.pai.entity.Transaction;
 import com.blockchain.pai.entity.TransactionInput;
 import com.blockchain.pai.entity.TransactionOutput;
 import com.blockchain.pai.entity.Wallet;
-import com.blockchain.pai.util.StringUtil;
-import com.google.gson.GsonBuilder;
 
 @SpringBootApplication
 public class PaiApplication {
@@ -74,7 +73,7 @@ public class PaiApplication {
 		System.out.println("WalletB's balance is: " + walletB.getBalance());
 
 		isChainValid();
-
+		SpringApplication.run(PaiApplication.class, args);
 	}
 
 	public static Boolean isChainValid() {
@@ -157,6 +156,7 @@ public class PaiApplication {
 		}
 		System.out.println("Blockchain is valid");
 		return true;
+
 	}
 
 	public static void addBlock(Block newBlock) {

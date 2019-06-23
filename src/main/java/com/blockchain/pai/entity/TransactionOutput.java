@@ -6,9 +6,9 @@ import com.blockchain.pai.util.StringUtil;
 
 public class TransactionOutput {
 	public String id;
-	public PublicKey reciepient; // also known as the new owner of these coins.
-	public float value; // the amount of coins they own
-	public String parentTransactionId; // the id of the transaction this output was created in
+	public PublicKey reciepient; // También conocido como el nuevo propietario de estas monedas.
+	public float value; // la cantidad de monedas que poseen
+	public String parentTransactionId; //El ID de la transacción en que se creó esta salida.
 
 	// Constructor
 	public TransactionOutput(PublicKey reciepient, float value, String parentTransactionId) {
@@ -19,7 +19,7 @@ public class TransactionOutput {
 				.applySha256(StringUtil.getStringFromKey(reciepient) + Float.toString(value) + parentTransactionId);
 	}
 
-	// Check if coin belongs to you
+	//Comprueba si la moneda te pertenece.
 	public boolean isMine(PublicKey publicKey) {
 		return (publicKey == reciepient);
 	}
