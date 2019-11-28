@@ -44,7 +44,7 @@ public class Block {
 			nonce++;
 			hash = calculateHash();
 		}
-		System.out.println("Block Mined!!! : " + hash);
+		System.out.println("Bloque Minado!!! : " + hash);
 	}
 
 	// agrega transaccion al bloque
@@ -59,7 +59,7 @@ public class Block {
 			}
 		}
 		transactions.add(transaction);
-		System.out.println("Transaction Successfully added to Block");
+		System.out.println("Transacción agregada al bloque");
 		return true;
 	}
 }

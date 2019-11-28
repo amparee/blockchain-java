@@ -35,7 +35,7 @@ public class PaiApplication {
 		walletB = new Wallet();
 		Wallet coinbase = new Wallet();
 
-		// create genesis transaction, which sends 100 NoobCoin to walletA:
+		// create genesis transaction, which sends 100 Units X to walletA:
 		genesisTransaction = new Transaction(coinbase.publicKey, walletA.publicKey, 100f, null);
 		genesisTransaction.generateSignature(coinbase.privateKey); // manually sign the genesis transaction
 		genesisTransaction.transactionId = "0"; // manually set the transaction id
@@ -45,35 +45,36 @@ public class PaiApplication {
 																							// our first transaction in
 																							// the UTXOs list.
 
-		System.out.println("Creating and Mining Genesis block... ");
+		System.out.println("Creando y minando un bloque... ");
 		Block genesis = new Block("0");
 		genesis.addTransaction(genesisTransaction);
 		addBlock(genesis);
 
 		// testing
 		Block block1 = new Block(genesis.hash);
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("\nWalletA is Attempting to send funds (40) to WalletB...");
+		System.out.println("\nClient A  balance es: " + walletA.getBalance());
+		System.out.println("\nClient A intenta enviar 40 unidades a Client B...");
 		block1.addTransaction(walletA.sendFunds(walletB.publicKey, 40f));
 		addBlock(block1);
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("WalletB's balance is: " + walletB.getBalance());
+		System.out.println("\nClient A balance es: " + walletA.getBalance());
+		System.out.println("\nClient B balance es: " + walletB.getBalance());
 
 		Block block2 = new Block(block1.hash);
-		System.out.println("\nWalletA Attempting to send more funds (1000) than it has...");
+		System.out.println("\nClient A intenta enviar 1000 unidades (que no las tiene)...");
 		block2.addTransaction(walletA.sendFunds(walletB.publicKey, 1000f));
 		addBlock(block2);
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("WalletB's balance is: " + walletB.getBalance());
+		System.out.println("\nClient A balance es: " + walletA.getBalance());
+		System.out.println("\nClient B balance es: " + walletB.getBalance());
 
 		Block block3 = new Block(block2.hash);
-		System.out.println("\nWalletB is Attempting to send funds (20) to WalletA...");
+		System.out.println("\nClient B intenta enviar 20 unidades Client A...");
 		block3.addTransaction(walletB.sendFunds(walletA.publicKey, 20));
-		System.out.println("\nWalletA's balance is: " + walletA.getBalance());
-		System.out.println("WalletB's balance is: " + walletB.getBalance());
+		System.out.println("\nClient A balance es: " + walletA.getBalance());
+		System.out.println("\nClient B balance es: " + walletB.getBalance());
 
+		System.out.println("\nValido si el bloque es válido");
 		isChainValid();
-		SpringApplication.run(PaiApplication.class, args);
+		//SpringApplication.run(PaiApplication.class, args);
 	}
 
 	public static Boolean isChainValid() {
